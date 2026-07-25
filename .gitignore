@@ -32,3 +32,4 @@ npm-debug.log*
 # Firebase Emulator Suite
 .firebase/
 firebase-export-*/
+.claude/
