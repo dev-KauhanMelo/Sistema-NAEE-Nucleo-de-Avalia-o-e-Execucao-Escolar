@@ -49,13 +49,15 @@ export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const aoMudarRef = useRef(aoMudar);
   aoMudarRef.current = aoMudar;
+  // Só o valor da montagem importa aqui (não reage a mudanças) — ver comentário no useEffect abaixo.
+  const valorInicialRef = useRef(valorInicial);
 
   useEffect(() => {
     if (!containerRef.current) return;
     registrarTema();
 
     const editor = monaco.editor.create(containerRef.current, {
-      value: valorInicial,
+      value: valorInicialRef.current,
       language: "python",
       theme: "naee-dark",
       fontFamily: '"JetBrains Mono", ui-monospace, "SFMono-Regular", monospace',
@@ -74,7 +76,12 @@ export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
       subscricao.dispose();
       editor.dispose();
     };
-  }, [valorInicial]);
+    // Deliberadamente [] — valorInicial é só o snapshot da montagem (é o próprio
+    // editor.onDidChangeModelContent acima que atualiza o estado do pai a cada
+    // tecla). Recriar o editor a cada mudança de valorInicial destruía e
+    // remontava o DOM do editor a cada letra digitada, perdendo o foco: usuário
+    // digitava 1 caractere, o editor sumia e precisava clicar de novo pra focar.
+  }, []);
 
   return <div ref={containerRef} className="h-full w-full" />;
 }
