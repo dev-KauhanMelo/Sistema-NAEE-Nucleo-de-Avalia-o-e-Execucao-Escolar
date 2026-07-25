@@ -23,7 +23,7 @@ self.MonacoEnvironment = {
 let temaRegistrado = false;
 function registrarTema() {
   if (temaRegistrado) return;
-  monaco.editor.defineTheme("sistema-provas-dark", {
+  monaco.editor.defineTheme("naee-dark", {
     base: "vs-dark",
     inherit: true,
     rules: [],
@@ -57,7 +57,7 @@ export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
     const editor = monaco.editor.create(containerRef.current, {
       value: valorInicial,
       language: "python",
-      theme: "sistema-provas-dark",
+      theme: "naee-dark",
       fontFamily: '"JetBrains Mono", ui-monospace, "SFMono-Regular", monospace',
       fontSize: 14,
       minimap: { enabled: false },

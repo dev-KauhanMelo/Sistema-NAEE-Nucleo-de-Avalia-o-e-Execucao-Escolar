@@ -1,4 +1,4 @@
-import type { Estacao, Evento } from "@sistema-provas/shared";
+import type { Estacao, Evento } from "@naee/shared";
 
 /**
  * Demonstra a grade enquanto o Firebase real ainda não tem dados em /estacoes

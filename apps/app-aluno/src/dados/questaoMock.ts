@@ -1,4 +1,4 @@
-import type { QuestaoPublica } from "@sistema-provas/shared";
+import type { QuestaoPublica } from "@naee/shared";
 
 /**
  * GET /api/questoes/:provaId ainda é skeleton (Fase 2) — usada como conteúdo

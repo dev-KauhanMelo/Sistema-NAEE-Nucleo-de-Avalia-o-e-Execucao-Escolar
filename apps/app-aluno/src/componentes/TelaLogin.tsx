@@ -33,7 +33,7 @@ export function TelaLogin({ onAutenticado }: TelaLoginProps) {
   return (
     <div className="flex h-screen items-center justify-center px-6">
       <form onSubmit={aoEnviar} className="w-full max-w-sm rounded-2xl border border-borda bg-superficie/60 p-8 shadow-2xl">
-        <p className="text-xs font-medium tracking-widest text-texto-fraco uppercase">Sistema de Avaliação Prática</p>
+        <p className="text-xs font-medium tracking-widest text-texto-fraco uppercase">NAEE — Núcleo de Avaliação e Execução Escolar</p>
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-texto">Entrar na prova</h1>
 
         <label className="mt-8 block text-sm font-medium text-texto-fraco">

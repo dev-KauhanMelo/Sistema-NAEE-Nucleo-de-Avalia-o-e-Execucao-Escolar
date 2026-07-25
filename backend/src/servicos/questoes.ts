@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { QuestaoPublica } from "@sistema-provas/shared";
+import type { QuestaoPublica } from "@naee/shared";
 import { paraQuestaoPublica, type Questao } from "../tipos/questao";
 
 // Mesmo padrão de servicos/alunos.ts: lido via fs, não import de módulo JSON,

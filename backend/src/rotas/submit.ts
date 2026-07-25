@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { submitRequisicaoEsquema, type SubmitRequisicao } from "@sistema-provas/shared";
+import { submitRequisicaoEsquema, type SubmitRequisicao } from "@naee/shared";
 import { validarCorpo } from "../middlewares/validarCorpo";
 
 export const rotaSubmit = Router();

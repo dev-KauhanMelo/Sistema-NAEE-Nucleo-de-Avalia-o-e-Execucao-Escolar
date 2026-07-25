@@ -1,4 +1,4 @@
-import type { Estacao } from "@sistema-provas/shared";
+import type { Estacao } from "@naee/shared";
 import { obterDb } from "../config/firebase";
 
 function refEstacao(estacaoId: string) {

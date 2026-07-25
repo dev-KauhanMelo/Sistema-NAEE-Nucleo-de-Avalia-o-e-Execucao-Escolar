@@ -11,7 +11,7 @@ build/
 *.tsbuildinfo
 
 # Electron
-apps/aluno-desktop/out/
+apps/app-aluno/out/
 
 # Ambiente e segredos
 .env

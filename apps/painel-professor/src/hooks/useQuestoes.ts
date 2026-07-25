@@ -1,4 +1,4 @@
-import type { QuestaoPublica } from "@sistema-provas/shared";
+import type { QuestaoPublica } from "@naee/shared";
 import { useEffect, useState } from "react";
 import { listarQuestoes } from "../lib/api";
 

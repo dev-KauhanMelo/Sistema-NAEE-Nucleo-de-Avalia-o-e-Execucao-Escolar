@@ -1,9 +1,9 @@
 {
-  "name": "@sistema-provas/aluno-desktop",
+  "name": "@naee/app-aluno",
   "private": true,
   "version": "0.1.0",
-  "description": "App do aluno para provas práticas de programação em ambiente controlado (lockdown)",
-  "author": "Sistema de Avaliação Prática",
+  "description": "App do aluno (NAEE) para provas práticas de programação em ambiente controlado (lockdown)",
+  "author": "NAEE - Núcleo de Avaliação e Execução Escolar",
   "main": "./out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
@@ -13,7 +13,7 @@
     "package:win": "electron-vite build && electron-builder --win portable"
   },
   "dependencies": {
-    "@sistema-provas/shared": "*",
+    "@naee/shared": "*",
     "monaco-editor": "^0.56.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
@@ -23,7 +23,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.2.0",
-    "electron": "43.2.0",
+    "electron": "33.4.11",
     "electron-builder": "^26.15.3",
     "electron-vite": "^5.0.0",
     "tailwindcss": "^4.3.3",
@@ -31,16 +31,20 @@
     "vite": "^7.3.6"
   },
   "build": {
-    "appId": "com.sistemaprovas.alunodesktop",
-    "productName": "Sistema de Avaliação - Aluno",
-    "artifactName": "aluno-desktop-${version}-portable.${ext}",
+    "appId": "com.naee.appaluno",
+    "productName": "NAEE - Aluno",
+    "artifactName": "app-aluno-${version}-portable.${ext}",
     "directories": {
       "output": "release",
       "buildResources": "build"
     },
-    "files": ["out/**/*"],
+    "files": [
+      "out/**/*"
+    ],
     "win": {
-      "target": ["portable"]
+      "target": [
+        "portable"
+      ]
     }
   }
 }

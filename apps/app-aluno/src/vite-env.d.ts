@@ -12,7 +12,7 @@ interface ImportMeta {
 // tipos de Node (process.versions) pro projeto do renderer (lib DOM only).
 declare global {
   interface Window {
-    alunoDesktop: {
+    appAluno: {
       versaoElectron: string;
     };
   }

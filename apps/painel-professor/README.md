@@ -39,7 +39,7 @@ Sobe em `http://localhost:5173`.
 
 Tema escuro é o único suportado (sem alternância) — segue os tokens definidos
 em `shared/src/design/tokens.css` (Tailwind v4, bloco `@theme`), importados
-via `@import "@sistema-provas/shared/tokens.css";` em `src/index.css`. Cor de
+via `@import "@naee/shared/tokens.css";` em `src/index.css`. Cor de
 status sempre no card inteiro (borda + fundo), nunca só num indicador
 pequeno — precisa ser lido de longe, do outro lado da sala.
 

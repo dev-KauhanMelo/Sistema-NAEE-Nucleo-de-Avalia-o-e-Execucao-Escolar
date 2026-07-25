@@ -68,9 +68,12 @@ function criarJanela(): void {
   }
 }
 
-Menu.setApplicationMenu(null);
-
 app.whenReady().then(() => {
+  // Precisa estar dentro de whenReady(): chamado no top-level do módulo,
+  // Menu ainda não está pronto e `Menu.setApplicationMenu` lança
+  // "Cannot read properties of undefined".
+  Menu.setApplicationMenu(null);
+
   criarJanela();
 
   app.on("activate", () => {

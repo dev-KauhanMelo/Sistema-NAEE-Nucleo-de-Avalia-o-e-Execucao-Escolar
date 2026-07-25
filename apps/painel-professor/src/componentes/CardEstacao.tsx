@@ -1,4 +1,4 @@
-import { rotuloStatus, type Estacao, type StatusEstacao } from "@sistema-provas/shared";
+import { rotuloStatus, type Estacao, type StatusEstacao } from "@naee/shared";
 import { useState } from "react";
 import { desbloquearEstacao } from "../lib/api";
 import { rotuloEstacao } from "../utilitarios/estacao";

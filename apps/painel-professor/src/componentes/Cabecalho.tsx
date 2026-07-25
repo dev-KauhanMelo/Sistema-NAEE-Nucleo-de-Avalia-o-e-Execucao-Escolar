@@ -9,7 +9,7 @@ export function Cabecalho({ conectado, totalEstacoes, totalBloqueadas }: Cabecal
     <header className="sticky top-0 z-10 border-b border-borda/60 bg-fundo/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5">
         <div>
-          <p className="text-xs font-medium tracking-widest text-texto-fraco uppercase">Sistema de Avaliação Prática</p>
+          <p className="text-xs font-medium tracking-widest text-texto-fraco uppercase">NAEE — Núcleo de Avaliação e Execução Escolar</p>
           <h1 className="text-xl font-semibold tracking-tight text-texto">Painel do Professor</h1>
         </div>
 

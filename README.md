@@ -1,4 +1,4 @@
-# Sistema de Avaliação Prática de Programação em Ambiente Controlado
+# NAEE - Núcleo de Avaliação e Execução Escolar
 
 Um "juiz online" escolar com lockdown: alunos resolvem questões de
 programação Python numa estação travada em modo kiosk (sem acesso ao resto
@@ -44,10 +44,8 @@ amarelo/vermelho/cinza) compartilhada entre os dois frontends via
 
 ## Como rodar
 
-Pré-requisitos: Node.js ≥20 (o app do aluno usa Electron 43, que pede
-Node ≥22.12 para o próprio tooling — ver `apps/aluno-desktop/README.md`),
-npm, e opcionalmente Docker + Multipass só se for testar o Judge0 de verdade
-(ver `judge0/README.md`).
+Pré-requisitos: Node.js ≥20, npm, e opcionalmente Docker + Multipass só se
+for testar o Judge0 de verdade (ver `judge0/README.md`).
 
 ```bash
 # 1. Instala tudo (monorepo com npm workspaces: shared, backend, apps/*)
@@ -66,8 +64,8 @@ cp apps/painel-professor/.env.example apps/painel-professor/.env.local
 npm run dev --workspace=apps/painel-professor    # http://localhost:5173
 
 # 5. App do aluno (outro terminal) — abre uma janela Electron real, em kiosk
-cp apps/aluno-desktop/.env.example apps/aluno-desktop/.env.local
-npm run dev --workspace=apps/aluno-desktop
+cp apps/app-aluno/.env.example apps/app-aluno/.env.local
+npm run dev --workspace=apps/app-aluno
 ```
 
 Cada pasta tem seu próprio `README.md` com detalhes (variáveis de ambiente,
@@ -81,13 +79,13 @@ cadastrar nada: `backend/dados/alunos.json` (`aluno-01` … `aluno-05`) e
 ### Empacotar o app do aluno em `.exe`
 
 ```bash
-npm run package:win --workspace=apps/aluno-desktop
+npm run package:win --workspace=apps/app-aluno
 ```
 
-Gera `apps/aluno-desktop/release/aluno-desktop-<versão>-portable.exe` — um
+Gera `apps/app-aluno/release/app-aluno-<versão>-portable.exe` — um
 único executável, sem instalador, sem precisar de admin na máquina do
 aluno. Empacotar o alvo Windows a partir de Linux exige Wine instalado no
-host (ver `apps/aluno-desktop/README.md`).
+host (ver `apps/app-aluno/README.md`).
 
 ## Estrutura de pastas
 
@@ -98,7 +96,7 @@ host (ver `apps/aluno-desktop/README.md`).
 │   └── dados/                alunos.json, questoes.json — listas fixas, sem banco de cadastro ainda
 ├── apps/
 │   ├── painel-professor/    painel web do professor (React + Vite)
-│   └── aluno-desktop/       app do aluno (Electron + React), kiosk + Monaco
+│   └── app-aluno/           app do aluno (Electron + React), kiosk + Monaco
 ├── judge0/                  Judge0 self-hosted (docker-compose), motor de execução de código
 ├── firebase.json, database.rules.json, .firebaserc
 │                            config do Firebase Emulator Suite, compartilhada por todo o monorepo
@@ -136,7 +134,7 @@ host (ver `apps/aluno-desktop/README.md`).
 - Janela `fullscreen + kiosk`, sem menu, sem frame; em produção bloqueia
   atalhos óbvios de fuga (F11, Esc, F12, Ctrl+W/Q, Alt+F4, Alt+Tab dentro
   da janela) e o próprio fechamento — com uma saída de emergência não
-  documentada na UI (ver `apps/aluno-desktop/README.md`).
+  documentada na UI (ver `apps/app-aluno/README.md`).
 - Login por ID de aluno + seleção de estação, contra o backend real.
 - Editor Monaco (só Python, carregado localmente, sem CDN).
 - Botão "Testar Código", chamando `/api/submit` de verdade (hoje `501` —

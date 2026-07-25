@@ -1,8 +1,8 @@
 {
-  "name": "sistema-provas",
+  "name": "naee",
   "private": true,
   "version": "0.1.0",
-  "description": "Sistema de Avaliação Prática de Programação em Ambiente Controlado",
+  "description": "NAEE - Núcleo de Avaliação e Execução Escolar: sistema de avaliação prática de programação em ambiente controlado",
   "engines": {
     "node": ">=20"
   },

@@ -1,4 +1,4 @@
-import type { QuestaoPublica } from "@sistema-provas/shared";
+import type { QuestaoPublica } from "@naee/shared";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 

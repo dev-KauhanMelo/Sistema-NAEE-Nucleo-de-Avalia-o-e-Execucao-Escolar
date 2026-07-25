@@ -1,4 +1,4 @@
-import type { Evento } from "@sistema-provas/shared";
+import type { Evento } from "@naee/shared";
 import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { EVENTOS_MOCK } from "../dados/mock";

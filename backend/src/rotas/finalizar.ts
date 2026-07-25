@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { finalizarRequisicaoEsquema, type FinalizarRequisicao } from "@sistema-provas/shared";
+import { finalizarRequisicaoEsquema, type FinalizarRequisicao } from "@naee/shared";
 import { validarCorpo } from "../middlewares/validarCorpo";
 
 export const rotaFinalizar = Router();

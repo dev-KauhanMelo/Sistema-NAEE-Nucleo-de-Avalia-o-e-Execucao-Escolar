@@ -1,4 +1,4 @@
-import type { Evento, TipoEvento } from "@sistema-provas/shared";
+import type { Evento, TipoEvento } from "@naee/shared";
 import { obterDb } from "../config/firebase";
 
 /**

@@ -1,4 +1,4 @@
-import type { ResultadoCaso } from "@sistema-provas/shared";
+import type { ResultadoCaso } from "@naee/shared";
 import type { CasoTesteOculto } from "../tipos/questao";
 
 export interface ExecutarCodigoParams {

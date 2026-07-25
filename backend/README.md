@@ -15,7 +15,7 @@ API do sistema, rodando 100% local — sem Docker, sem depender de rede.
 | `GET /api/health` | Healthcheck — não toca em Firebase nem Judge0 | ✅ |
 
 As rotas ainda em skeleton validam o corpo com os esquemas Zod de
-`@sistema-provas/shared` e respondem `501` — a lógica real fica marcada com
+`@naee/shared` e respondem `501` — a lógica real fica marcada com
 `// TODO:` no arquivo da rota.
 
 ## Rodando

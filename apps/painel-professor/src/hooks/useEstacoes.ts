@@ -1,4 +1,4 @@
-import type { Estacao } from "@sistema-provas/shared";
+import type { Estacao } from "@naee/shared";
 import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { ESTACOES_MOCK } from "../dados/mock";

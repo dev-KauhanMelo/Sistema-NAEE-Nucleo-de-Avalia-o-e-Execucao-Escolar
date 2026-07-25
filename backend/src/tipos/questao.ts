@@ -1,4 +1,4 @@
-import type { CasoTesteVisivel, LinguagemSuportada, QuestaoPublica } from "@sistema-provas/shared";
+import type { CasoTesteVisivel, LinguagemSuportada, QuestaoPublica } from "@naee/shared";
 
 export interface CasoTesteOculto {
   entrada: string;

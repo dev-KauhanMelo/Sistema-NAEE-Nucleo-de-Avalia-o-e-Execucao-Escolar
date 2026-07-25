@@ -4,6 +4,6 @@ const apiAluno = {
   versaoElectron: process.versions.electron,
 };
 
-contextBridge.exposeInMainWorld("alunoDesktop", apiAluno);
+contextBridge.exposeInMainWorld("appAluno", apiAluno);
 
 export type ApiAluno = typeof apiAluno;

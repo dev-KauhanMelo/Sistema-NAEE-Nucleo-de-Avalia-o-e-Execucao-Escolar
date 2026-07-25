@@ -1,4 +1,4 @@
-import { desbloquearRequisicaoEsquema, type DesbloquearRequisicao } from "@sistema-provas/shared";
+import { desbloquearRequisicaoEsquema, type DesbloquearRequisicao } from "@naee/shared";
 import { Router } from "express";
 import { validarCorpo } from "../middlewares/validarCorpo";
 import { desbloquearEstacao, estacaoExiste } from "../servicos/estacoes";

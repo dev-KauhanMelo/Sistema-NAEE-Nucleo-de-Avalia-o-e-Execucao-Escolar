@@ -1,4 +1,4 @@
-import { authRequisicaoEsquema, type AuthRequisicao } from "@sistema-provas/shared";
+import { authRequisicaoEsquema, type AuthRequisicao } from "@naee/shared";
 import { Router } from "express";
 import { validarCorpo } from "../middlewares/validarCorpo";
 import { buscarAluno } from "../servicos/alunos";

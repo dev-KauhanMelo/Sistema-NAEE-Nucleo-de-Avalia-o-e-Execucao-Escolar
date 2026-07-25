@@ -1,4 +1,4 @@
-import type { Evento, TipoEvento } from "@sistema-provas/shared";
+import type { Evento, TipoEvento } from "@naee/shared";
 import { rotuloEstacao } from "../utilitarios/estacao";
 import { formatarTempoRelativo } from "../utilitarios/tempo";
 

@@ -7,8 +7,8 @@ Kiosk fullscreen forçado — feito pra rodar travado na tela da prova.
 
 ```bash
 npm install
-cp apps/aluno-desktop/.env.example apps/aluno-desktop/.env.local   # ajuste se necessário
-npm run dev --workspace=apps/aluno-desktop
+cp apps/app-aluno/.env.example apps/app-aluno/.env.local   # ajuste se necessário
+npm run dev --workspace=apps/app-aluno
 ```
 
 Abre uma janela Electron real (kiosk + fullscreen mesmo em dev, pra dar pra
@@ -16,11 +16,15 @@ testar o lockdown de verdade) com DevTools destacado automaticamente. Só o
 renderer (React) também sobe num dev server Vite comum — é ele que muda a
 cada save.
 
-**Atenção Node**: `electron@43.2.0` (e `@electron/rebuild`) declaram exigir
-Node ≥22.12.0. Este ambiente de desenvolvimento tinha Node 20.20.2 — o
-`npm install`, `typecheck` e `electron-vite build` funcionaram normalmente
-aqui, mas se `npm run dev`/`electron .` reclamar em outra máquina, é o
-primeiro lugar a olhar.
+**Electron 33 (fixado em `33.4.11`), não a última major**: `electron@43`
+(usado originalmente) declara exigir Node ≥22.12 só pra instalar/rodar o
+tooling — o binário empacotado roda seu próprio Node interno independente
+da máquina host, mas isso já impedia `npm install`/`npm run dev` limpos com
+Node <22. Fixado em `33.4.11` (`engines.node: >=12.20.55`) especificamente
+pra rodar bem com Node 20.20.2. `@electron/rebuild`/`node-abi` (dependências
+internas do `electron-builder`, não deste pacote) ainda avisam pedir
+Node ≥22 no `npm install` — inofensivo aqui, só entram em jogo se houvesse
+módulo nativo pra recompilar, o que não é o caso.
 
 ## Login
 
@@ -66,7 +70,11 @@ sozinho em build de produção.
 ## Kiosk / segurança — o que dá e o que não dá pra garantir
 
 `electron/main/index.ts` abre a janela com `fullscreen: true, kiosk: true,
-frame: false`, sem menu, e em produção (`app.isPackaged`) bloqueia
+frame: false`, sem menu (`Menu.setApplicationMenu(null)` — precisa rodar
+dentro de `app.whenReady()`, chamado no nível do módulo lança
+`Cannot read properties of undefined (reading 'setApplicationMenu')`, já
+que a API de UI do Electron não existe antes do app estar pronto), e em
+produção (`app.isPackaged`) bloqueia
 F11/Esc/F12/Ctrl+W/Ctrl+Q/Alt+F4/Ctrl+Shift+I/Alt+Tab dentro da própria janela,
 além de interceptar o evento de fechar (não fecha via clique/Alt+F4).
 
@@ -85,12 +93,12 @@ nenhuma forma de sair fora de matar o processo no Gerenciador de Tarefas.
 ## Empacotando o `.exe` portável
 
 ```bash
-npm run package:win --workspace=apps/aluno-desktop
-# ou, dentro de apps/aluno-desktop:
+npm run package:win --workspace=apps/app-aluno
+# ou, dentro de apps/app-aluno:
 npm run build && npx electron-builder --win portable
 ```
 
-Gera `release/aluno-desktop-<versão>-portable.exe` — um único executável
+Gera `release/app-aluno-<versão>-portable.exe` — um único executável
 NSIS self-extracting, sem instalador, sem exigir admin. Empacotar (não só
 rodar) o target Windows a partir de Linux precisa de **Wine** instalado no
 host (`electron-builder` invoca `signtool`/NSIS via Wine); sem ele o passo

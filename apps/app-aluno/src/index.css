@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@sistema-provas/shared/tokens.css";
+@import "@naee/shared/tokens.css";
 
 @layer base {
   html {

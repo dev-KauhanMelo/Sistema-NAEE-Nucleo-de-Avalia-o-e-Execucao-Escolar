@@ -1,7 +1,7 @@
 /*
  * Tokens de design compartilhados — Tailwind v4 (bloco @theme).
  * Consumido pelo app do aluno e pelo painel do professor via:
- *   @import "@sistema-provas/shared/tokens.css";
+ *   @import "@naee/shared/tokens.css";
  *
  * Tema escuro é o único suportado nesta versão (sem alternância de tema).
  * Pilha de fontes ainda usa fallbacks de sistema — os arquivos de fonte
