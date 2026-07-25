@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "@sistema-provas/shared/tokens.css";
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-fundo text-texto font-sans antialiased;
+    overflow: hidden;
+  }
+}

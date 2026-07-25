@@ -1,0 +1,46 @@
+{
+  "name": "@sistema-provas/aluno-desktop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "App do aluno para provas práticas de programação em ambiente controlado (lockdown)",
+  "author": "Sistema de Avaliação Prática",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "package:win": "electron-vite build && electron-builder --win portable"
+  },
+  "dependencies": {
+    "@sistema-provas/shared": "*",
+    "monaco-editor": "^0.56.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "43.2.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^7.3.6"
+  },
+  "build": {
+    "appId": "com.sistemaprovas.alunodesktop",
+    "productName": "Sistema de Avaliação - Aluno",
+    "artifactName": "aluno-desktop-${version}-portable.${ext}",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": ["out/**/*"],
+    "win": {
+      "target": ["portable"]
+    }
+  }
+}

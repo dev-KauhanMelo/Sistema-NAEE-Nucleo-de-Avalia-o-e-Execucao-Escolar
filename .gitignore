@@ -1,0 +1,34 @@
+# Dependências
+node_modules/
+venv/
+
+# Builds
+dist/
+dist-electron/
+out/
+release/
+build/
+*.tsbuildinfo
+
+# Electron
+apps/aluno-desktop/out/
+
+# Ambiente e segredos
+.env
+.env.local
+.env.*.local
+judge0/judge0.conf
+
+# Editor / SO
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.log
+npm-debug.log*
+
+# Vite
+.vite/
+
+# Firebase Emulator Suite
+.firebase/
+firebase-export-*/

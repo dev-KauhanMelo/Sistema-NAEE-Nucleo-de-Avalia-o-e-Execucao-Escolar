@@ -1,0 +1,20 @@
+{
+  "name": "sistema-provas",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sistema de Avaliação Prática de Programação em Ambiente Controlado",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "shared",
+    "backend",
+    "apps/*"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

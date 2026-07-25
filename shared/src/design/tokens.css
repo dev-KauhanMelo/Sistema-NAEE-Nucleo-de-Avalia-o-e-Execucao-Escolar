@@ -1,0 +1,35 @@
+/*
+ * Tokens de design compartilhados — Tailwind v4 (bloco @theme).
+ * Consumido pelo app do aluno e pelo painel do professor via:
+ *   @import "@sistema-provas/shared/tokens.css";
+ *
+ * Tema escuro é o único suportado nesta versão (sem alternância de tema).
+ * Pilha de fontes ainda usa fallbacks de sistema — os arquivos de fonte
+ * (Inter Variable, JetBrains Mono) são empacotados localmente quando os
+ * apps forem montados (Fase 3/4), não fazem parte deste pacote.
+ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Superfícies — zinc neutro, sem tom azulado/roxo genérico */
+  --color-fundo: #0a0a0c;
+  --color-superficie: #131316;
+  --color-superficie-alta: #1c1c21;
+  --color-borda: #2a2a30;
+
+  /* Texto */
+  --color-texto: #e4e4e7;
+  --color-texto-fraco: #9a9aa2;
+
+  /* Acento único */
+  --color-acento: #6366f1;
+  --color-acento-forte: #818cf8;
+
+  /* Status de estação — usado em borda + preenchimento do card inteiro,
+     nunca só num indicador pequeno (precisa ser lido de longe). */
+  --color-status-ativo: #22c55e;
+  --color-status-atencao: #eab308;
+  --color-status-bloqueado: #ef4444;
+  --color-status-offline: #52525b;
+}
