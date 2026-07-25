@@ -29,6 +29,11 @@ Sobe em `http://localhost:5173`.
 - O botão **Desbloquear estação** chama `POST /api/desbloquear` de verdade
   (`src/lib/api.ts`) — já implementada no backend, atualiza o Firebase e o
   card muda de cor em tempo real, sem reload.
+- **Questões da prova**: seção abaixo do grid (`src/componentes/ListaQuestoes.tsx`)
+  busca `GET /api/questoes` uma vez ao montar (não é Firebase/tempo real, é o
+  catálogo estático do backend) e lista as 5 questões — título, linguagem,
+  enunciado truncado e contagem de casos públicos. Nunca recebe `casosOcultos`,
+  o backend já filtra isso antes de responder.
 
 ## Design
 

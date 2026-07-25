@@ -5,6 +5,7 @@ export const linguagemSuportadaEsquema = z.enum(["python"]);
 export const casoTesteVisivelEsquema = z.object({
   entrada: z.string(),
   saidaEsperada: z.string(),
+  descricao: z.string().optional(),
 });
 
 export const questaoPublicaEsquema = z.object({

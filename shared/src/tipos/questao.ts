@@ -3,6 +3,8 @@ export type LinguagemSuportada = "python";
 export interface CasoTesteVisivel {
   entrada: string;
   saidaEsperada: string;
+  /** Nota curta de contexto exibida junto do caso (ex.: "empate — vence quem aparece primeiro"). */
+  descricao?: string;
 }
 
 /**

@@ -1,15 +1,19 @@
 import { Router } from "express";
+import { listarQuestoesPublicas } from "../servicos/questoes";
 
 export const rotaQuestoes = Router();
 
-/** Devolve as questões (formato público, sem gabarito) da prova. */
-rotaQuestoes.get("/:provaId", (req, res) => {
-  const { provaId } = req.params;
-  void provaId;
+/** Lista todas as questões (formato público, sem gabarito) — Fase 5. */
+rotaQuestoes.get("/", (_req, res) => {
+  res.json({ ok: true, questoes: listarQuestoesPublicas() });
+});
 
-  // TODO: buscar a prova no Firebase Realtime DB por provaId.
-  // TODO: buscar cada questão em questoesIds e mapear com paraQuestaoPublica().
-  // TODO: 404 se a prova não existir; 403 se ainda não estiver "em_andamento"?
-
-  res.status(501).json({ ok: false, erro: "Rota ainda não implementada" });
+/**
+ * Mesma lista por enquanto: só existe uma prova ("prova-001", ver
+ * rotas/auth.ts) e ainda não há registro de provas no Firebase vinculando
+ * questoesIds a cada uma. Quando isso existir, passa a filtrar de verdade
+ * por provaId em vez de devolver tudo.
+ */
+rotaQuestoes.get("/:provaId", (_req, res) => {
+  res.json({ ok: true, questoes: listarQuestoesPublicas() });
 });

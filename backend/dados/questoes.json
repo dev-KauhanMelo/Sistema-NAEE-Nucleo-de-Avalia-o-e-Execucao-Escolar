@@ -1,0 +1,147 @@
+[
+  {
+    "questaoId": "q1",
+    "titulo": "Eletrificação Solar Comunitária",
+    "enunciado": "A ONG Recife Solar está planejando um sistema de energia fotovoltaica para atender famílias de uma comunidade do Grande Recife que ainda não tem acesso à rede elétrica formal. Cada painel solar instalado gera 2.5 kWh de energia por dia.\n\nVocê recebeu o consumo diário estimado (em kWh) de cada residência da comunidade. A primeira linha da entrada contém um número inteiro N, a quantidade de residências. Em seguida, seguem N linhas, cada uma com o consumo diário de uma residência (um número, podendo ter casas decimais).\n\nCalcule a quantidade mínima de painéis solares necessária para suprir o consumo total da comunidade. Se a soma dos consumos não for múltipla exata da geração de um painel, arredonde para cima — é preciso cobrir a demanda inteira.\n\nImprima apenas o número de painéis necessários.",
+    "linguagem": "python",
+    "casosPublicos": [
+      {
+        "entrada": "3\n4.5\n3.2\n5.0",
+        "saidaEsperada": "6",
+        "descricao": "3 residências, consumo total 12.7 kWh — não é múltiplo de 2.5, arredonda para cima"
+      },
+      {
+        "entrada": "1\n2.5",
+        "saidaEsperada": "1",
+        "descricao": "1 residência, consumo exatamente igual à geração de 1 painel"
+      },
+      {
+        "entrada": "2\n10\n10",
+        "saidaEsperada": "8",
+        "descricao": "consumo alto, soma exata (20 kWh) — 8 painéis certinhos, sem arredondar pra 9"
+      }
+    ],
+    "casosOcultos": [
+      { "entrada": "4\n1\n1\n1\n1", "saidaEsperada": "2" },
+      { "entrada": "1\n0.1", "saidaEsperada": "1" },
+      { "entrada": "5\n2.5\n2.5\n2.5\n2.5\n2.5", "saidaEsperada": "5" }
+    ],
+    "templateInicial": "def solucao(entrada):\n    linhas = entrada.strip().split(\"\\n\")\n    n = int(linhas[0])\n    consumos = [float(x) for x in linhas[1:n + 1]]\n    # seu código aqui\n    pass\n"
+  },
+  {
+    "questaoId": "q2",
+    "titulo": "O Point Mais Visitado de Recife",
+    "enunciado": "A Secretaria de Turismo do Recife divulgou um levantamento com o número de visitantes em alguns dos principais pontos turísticos da cidade — do Marco Zero ao Instituto Ricardo Brennand, passando pela Praia de Boa Viagem.\n\nA primeira linha da entrada contém um número inteiro N. Em seguida, seguem N linhas no formato \"nome,visitantes\" (nome do ponto turístico e número de visitantes, separados por vírgula).\n\nImprima o nome do ponto turístico com o maior número de visitantes. Em caso de empate, imprima o nome do ponto que aparece primeiro na entrada.",
+    "linguagem": "python",
+    "casosPublicos": [
+      {
+        "entrada": "3\nMarco Zero,1200\nInstituto Ricardo Brennand,850\nPraia de Boa Viagem,2100",
+        "saidaEsperada": "Praia de Boa Viagem",
+        "descricao": "caso simples, sem empate"
+      },
+      {
+        "entrada": "2\nOficina Brennand,500\nMarco Zero,500",
+        "saidaEsperada": "Oficina Brennand",
+        "descricao": "empate — vence quem aparece primeiro na entrada"
+      },
+      {
+        "entrada": "1\nInstituto Ricardo Brennand,300",
+        "saidaEsperada": "Instituto Ricardo Brennand",
+        "descricao": "só um ponto turístico na lista"
+      }
+    ],
+    "casosOcultos": [
+      { "entrada": "4\nMarco Zero,100\nBoa Viagem,900\nRecife Antigo,900\nOlinda,50", "saidaEsperada": "Boa Viagem" },
+      { "entrada": "3\nA,0\nB,0\nC,1", "saidaEsperada": "C" },
+      { "entrada": "2\nParque das Esculturas,10000\nMarco Zero,9999", "saidaEsperada": "Parque das Esculturas" }
+    ],
+    "templateInicial": "def solucao(entrada):\n    linhas = entrada.strip().split(\"\\n\")\n    n = int(linhas[0])\n    pontos = []\n    for linha in linhas[1:n + 1]:\n        nome, visitantes = linha.rsplit(\",\", 1)\n        pontos.append((nome, int(visitantes)))\n    # seu código aqui\n    pass\n"
+  },
+  {
+    "questaoId": "q3",
+    "titulo": "Rota de Entrega no Porto Digital",
+    "enunciado": "No Porto Digital, parque tecnológico do Recife Antigo, entregadores de bicicleta fazem o transporte de equipamentos entre as empresas da região. Cada entregador tem um limite diário de 15000 metros (15 km) de pedalada, por questões de segurança e bem-estar.\n\nA primeira linha da entrada contém um número inteiro N, a quantidade de trechos percorridos por um entregador em um dia. Em seguida, seguem N linhas, cada uma com a distância (em metros, número inteiro) de um trecho.\n\nSome as distâncias de todos os trechos. Se o total for menor ou igual a 15000 metros, imprima \"Dentro do limite\". Caso contrário, imprima \"Limite excedido\".",
+    "linguagem": "python",
+    "casosPublicos": [
+      {
+        "entrada": "4\n3200\n1500\n4800\n2000",
+        "saidaEsperada": "Dentro do limite",
+        "descricao": "soma 11500m, abaixo do limite"
+      },
+      {
+        "entrada": "3\n6000\n6000\n6000",
+        "saidaEsperada": "Limite excedido",
+        "descricao": "soma 18000m, acima do limite"
+      },
+      {
+        "entrada": "1\n500",
+        "saidaEsperada": "Dentro do limite",
+        "descricao": "um único trecho curto"
+      }
+    ],
+    "casosOcultos": [
+      { "entrada": "2\n7500\n7500", "saidaEsperada": "Dentro do limite" },
+      { "entrada": "1\n15001", "saidaEsperada": "Limite excedido" },
+      { "entrada": "5\n1\n1\n1\n1\n1", "saidaEsperada": "Dentro do limite" }
+    ],
+    "templateInicial": "def solucao(entrada):\n    linhas = entrada.strip().split(\"\\n\")\n    n = int(linhas[0])\n    distancias = [int(x) for x in linhas[1:n + 1]]\n    # seu código aqui\n    pass\n"
+  },
+  {
+    "questaoId": "q4",
+    "titulo": "Monitoramento da Qualidade da Água",
+    "enunciado": "Um projeto de saneamento acompanha a qualidade da água distribuída em bairros às margens do rio Capibaribe. A faixa de pH considerada segura para consumo humano é de 6.5 a 8.5, incluindo os extremos.\n\nA primeira linha da entrada contém um número inteiro N, a quantidade de medições de pH feitas no dia. Em seguida, seguem N linhas, cada uma com um valor de pH (número, podendo ter casas decimais).\n\nCalcule a porcentagem de medições fora da faixa segura e classifique o resultado:\n- Se nenhuma medição estiver fora da faixa, imprima \"Água própria para consumo\".\n- Se até 20% das medições estiverem fora da faixa (mas pelo menos uma), imprima \"Atenção: monitorar\".\n- Se mais de 20% das medições estiverem fora da faixa, imprima \"Água imprópria — notificar Compesa\".",
+    "linguagem": "python",
+    "casosPublicos": [
+      {
+        "entrada": "5\n7.0\n6.8\n9.2\n7.5\n8.0",
+        "saidaEsperada": "Atenção: monitorar",
+        "descricao": "1 de 5 medições (20%) fora da faixa segura"
+      },
+      {
+        "entrada": "3\n7.0\n7.2\n6.9",
+        "saidaEsperada": "Água própria para consumo",
+        "descricao": "todas as medições dentro da faixa segura"
+      },
+      {
+        "entrada": "4\n9.0\n9.5\n10.0\n6.0",
+        "saidaEsperada": "Água imprópria — notificar Compesa",
+        "descricao": "todas as medições fora da faixa segura"
+      }
+    ],
+    "casosOcultos": [
+      { "entrada": "1\n6.5", "saidaEsperada": "Água própria para consumo" },
+      { "entrada": "1\n8.5", "saidaEsperada": "Água própria para consumo" },
+      { "entrada": "5\n9.0\n7.0\n7.0\n7.0\n7.0", "saidaEsperada": "Atenção: monitorar" }
+    ],
+    "templateInicial": "def solucao(entrada):\n    linhas = entrada.strip().split(\"\\n\")\n    n = int(linhas[0])\n    medicoes = [float(x) for x in linhas[1:n + 1]]\n    # seu código aqui\n    pass\n"
+  },
+  {
+    "questaoId": "q5",
+    "titulo": "Chamados de Iluminação Pública por Bairro",
+    "enunciado": "O portal de dados abertos da Prefeitura do Recife disponibiliza o número de chamados de manutenção de iluminação pública recebidos por bairro. Uma equipe quer priorizar os bairros que estão gerando mais chamados do que a média da cidade.\n\nA primeira linha da entrada contém um número inteiro N. Em seguida, seguem N linhas no formato \"bairro,chamados\" (nome do bairro e número de chamados, separados por vírgula).\n\nCalcule a média de chamados entre todos os bairros. Imprima, um por linha e na mesma ordem em que aparecem na entrada, o nome de cada bairro cujo número de chamados é estritamente maior que a média. Se nenhum bairro estiver acima da média, não imprima nada.",
+    "linguagem": "python",
+    "casosPublicos": [
+      {
+        "entrada": "4\nBoa Vista,12\nCasa Amarela,8\nEspinheiro,20\nVarzea,4",
+        "saidaEsperada": "Boa Vista\nEspinheiro",
+        "descricao": "média 11.0 — Boa Vista e Espinheiro ficam estritamente acima"
+      },
+      {
+        "entrada": "3\nGraças,5\nMadalena,5\nTorre,5",
+        "saidaEsperada": "",
+        "descricao": "todos empatados na média — ninguém fica estritamente acima"
+      },
+      {
+        "entrada": "2\nBoa Viagem,100\nAflitos,0",
+        "saidaEsperada": "Boa Viagem",
+        "descricao": "média 50.0 — só um bairro acima"
+      }
+    ],
+    "casosOcultos": [
+      { "entrada": "1\nCordeiro,10", "saidaEsperada": "" },
+      { "entrada": "5\nVarzea,1\nIputinga,1\nCurado,1\nAfogados,1\nBoaVista,100", "saidaEsperada": "BoaVista" },
+      { "entrada": "3\nA,10\nB,20\nC,30", "saidaEsperada": "C" }
+    ],
+    "templateInicial": "def solucao(entrada):\n    linhas = entrada.strip().split(\"\\n\")\n    n = int(linhas[0])\n    bairros = []\n    for linha in linhas[1:n + 1]:\n        nome, chamados = linha.rsplit(\",\", 1)\n        bairros.append((nome, int(chamados)))\n    # seu código aqui\n    pass\n"
+  }
+]
