@@ -43,14 +43,17 @@ function registrarTema() {
 interface EditorMonacoProps {
   valorInicial: string;
   aoMudar: (valor: string) => void;
+  /** Questão já finalizada via /api/finalizar — trava o editor sem remontá-lo. */
+  somenteLeitura?: boolean;
 }
 
-export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
+export function EditorMonaco({ valorInicial, aoMudar, somenteLeitura = false }: EditorMonacoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const aoMudarRef = useRef(aoMudar);
   aoMudarRef.current = aoMudar;
   // Só o valor da montagem importa aqui (não reage a mudanças) — ver comentário no useEffect abaixo.
   const valorInicialRef = useRef(valorInicial);
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -66,7 +69,9 @@ export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
       automaticLayout: true,
       scrollBeyondLastLine: false,
       padding: { top: 16 },
+      readOnly: somenteLeitura,
     });
+    editorRef.current = editor;
 
     const subscricao = editor.onDidChangeModelContent(() => {
       aoMudarRef.current(editor.getValue());
@@ -75,6 +80,7 @@ export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
     return () => {
       subscricao.dispose();
       editor.dispose();
+      editorRef.current = null;
     };
     // Deliberadamente [] — valorInicial é só o snapshot da montagem (é o próprio
     // editor.onDidChangeModelContent acima que atualiza o estado do pai a cada
@@ -82,6 +88,12 @@ export function EditorMonaco({ valorInicial, aoMudar }: EditorMonacoProps) {
     // remontava o DOM do editor a cada letra digitada, perdendo o foco: usuário
     // digitava 1 caractere, o editor sumia e precisava clicar de novo pra focar.
   }, []);
+
+  // Precisa reagir sem remontar — travar o editor no meio de uma sessão
+  // (finalizar a questão ativa) não pode reiniciar o DOM do Monaco.
+  useEffect(() => {
+    editorRef.current?.updateOptions({ readOnly: somenteLeitura });
+  }, [somenteLeitura]);
 
   return <div ref={containerRef} className="h-full w-full" />;
 }

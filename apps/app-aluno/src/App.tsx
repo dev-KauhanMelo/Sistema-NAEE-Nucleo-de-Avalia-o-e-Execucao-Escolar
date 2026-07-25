@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="relative h-screen">
-      <TelaEditor sessao={sessao} destacarAtencao={strikes === 2} />
+      <TelaEditor sessao={sessao} strikes={strikes} />
       {strikes === 1 && <ToastStrike key={ultimoAviso} />}
       {strikes >= 3 && <TelaLockdown onResetDev={resetarDev} />}
     </div>

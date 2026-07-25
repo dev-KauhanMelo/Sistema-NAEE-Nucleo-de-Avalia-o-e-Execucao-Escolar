@@ -35,17 +35,45 @@ ainda — `backend/dados/alunos.json` só sabe comparar por ID exato (ex.:
 `aluno-01`). Um `GET /api/alunos` + autocomplete por nome é a melhoria óbvia
 quando isso for pra sala de aula de verdade.
 
-## Editor
+## Tela principal (Fase 6)
+
+Layout de 3 colunas: **sidebar de questões/testes** (esquerda, recolhível) →
+**editor Monaco** (centro) → **painel de enunciado** (direita, fixo). O
+cabeçalho (`src/componentes/Cabecalho.tsx`) mostra o timer, o indicador de
+avisos e os botões de ação; `src/componentes/TelaEditor.tsx` orquestra tudo.
+
+`GET /api/questoes/:provaId` já é chamada de verdade
+(`src/lib/api.ts#listarQuestoes`) — busca as 5 questões reais de
+`backend/dados/questoes.json`. O código de cada questão fica em
+`localStorage` por `estacaoId` (`src/hooks/useProgressoProva.ts`), pra
+sobreviver a um reload/crash do Electron sem perder o que o aluno escreveu.
+
+**Status de questão** (`não iniciada` / `em andamento` / `resolvida`) — ver
+`src/tipos/resultado.ts`: "resolvida" só acontece depois de **Enviar
+Resposta Final** (roda os casos ocultos e trava a edição), nunca só por
+passar nos casos públicos via **Testar Código** — isso evitaria dar a
+entender que a questão está correta quando na real só os públicos (metade
+dos casos) passaram.
+
+**Testar Código** chama `POST /api/submit` de verdade; **Enviar Resposta
+Final** abre um modal de confirmação (irreversível) e chama
+`POST /api/finalizar`. As duas ainda retornam `501` (Judge0 não integrado),
+e a UI mostra isso de forma honesta em vez de fingir sucesso — o formato de
+resposta de sucesso assumido pelo client (`ResultadoExecucao` em
+`src/lib/api.ts`) ainda não foi confirmado por nenhum schema Zod do backend,
+já que a rota nunca respondeu com sucesso de verdade; ajustar lá se o
+formato real divergir quando o Judge0 for integrado.
+
+**Timer** (`src/hooks/useTempoRestante.ts`) é uma contagem regressiva local
+de 60 minutos a partir do login — não existe hoje nenhuma fonte de verdade
+de prazo de prova no backend/Firebase. Trocar a fonte do hook quando existir.
 
 Monaco Editor, só Python (`src/componentes/EditorMonaco.tsx`), 100% local —
 sem CDN, sem telemetria. Importa `monaco-editor/editor/editor.api.js` +
 `monaco-editor/languages/definitions/python/register.js` em vez do pacote
-inteiro, que registraria as ~60 linguagens suportadas à toa.
-
-`GET /api/questoes/:provaId` ainda é skeleton (Fase 2) — o editor usa
-`src/dados/questaoMock.ts` como placeholder. **Testar Código** chama
-`POST /api/submit` de verdade; hoje retorna `501` (Judge0 não integrado
-ainda), e a UI mostra esse estado de forma honesta — nunca finge sucesso.
+inteiro, que registraria as ~60 linguagens suportadas à toa. Aceita
+`somenteLeitura` pra travar o editor sem remontá-lo quando a questão ativa
+é finalizada.
 
 ## Lockdown (perda de foco)
 
@@ -53,9 +81,9 @@ ainda), e a UI mostra esse estado de forma honesta — nunca finge sucesso.
 
 | Strike | UI |
 |---|---|
-| 1 | Toast no canto, auto-some em 4s |
-| 2 | Faixa amarela persistente + borda na tela inteira |
-| 3 | Tela vermelha "Trava Lockdown" cobrindo tudo, sem forma de interagir |
+| 1 | Toast no canto (auto-some em 4s) + indicador amarelo permanente no cabeçalho ("1 de 3 avisos") |
+| 2 | Faixa amarela persistente + borda na tela inteira, indicador do cabeçalho vira "2 de 3 avisos" |
+| 3 | Tela vermelha "Trava Lockdown" cobrindo tudo (inclusive o cabeçalho), sem forma de interagir |
 
 **Limitação conhecida, de propósito não resolvida aqui**: os strikes são
 estado local do renderer, não gravados no Firebase — não existe ainda um
